@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Edit Users</title>
+  </head>
+  <body>
+    
+
+    <div class="container">
+        <h1>Edit Users</h1>
+        <p><a class="btn btn-link" href="/users" role="button">Show All</a></p>
+        <form action="/users/<%= users.id %>/edit" method="post">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" id="email" name="email" value="<%= users.email %>">
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender </label>
+                <input type="text" class="form-control" id="gender" name="gender" value="<%= users.gender %>">
+              </div>
+
+            <div class="form-group">
+                <label for="password">Password </label>
+                <input type="text" class="form-control" id="password" name="password" value="<%= users.password%>">
+              </div>
+
+            <div class="form-group">
+                <label for="role">Role </label>
+                <input type="text" class="form-control" id="role" name="role" value="<%= users.role%>">
+              </div>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+
+  </body>
+</html>

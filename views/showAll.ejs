@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Show Users</title>
+  </head>
+  <body>
+    
+
+    <div class="container">
+        <h1>Show Users</h1>
+        <p><a class="btn btn-primary" href="/users/add" role="button">Add User</a></p>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Password</th>
+                <th scope="col">Role</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for (let i  = 0; i < users.length; i++) { %>
+              <tr>
+                <th scope="row"><%= users[i].id %></th>
+                <td><%= users[i].email %></td>
+                <td><%= users[i].gender %></td>
+                <td><%= users[i].password %></td>
+                <td><%= users[i].role %></td>
+                <td><a class="btn btn-success" href="/users/<%= users[i].id %>/edit" role="button">Edit</a></td>
+                <td><a class="btn btn-danger" href="/users/<%= users[i].id %>/delete" role="button">Delete</a></td>
+              </tr>
+              <% } %>
+              
+            </tbody>
+          </table>
+    </div>
+
+  </body>
+</html>
