@@ -6,6 +6,7 @@ const multer =require('multer');
 
 //untuk menambahkan path
 const path=require('path');
+const pool = require("./config/connection");
 app.use('/upload',express.static(path.join(__dirname,'upload')));
 
 //menentukan lokasi pengunggahan
@@ -22,7 +23,7 @@ const diskStorage=multer.diskStorage({
 });
 
 app.post(
-    "/contact/upload",
+    "/contact/upload/:id",
     multer({
         storage:diskStorage
     }).single("photo"),
@@ -34,18 +35,21 @@ app.post(
                 status:false,
                 data:"No File is Selected.",
             });
+        }else{
+            var insertData='update movies set photo = $1 where id =$2'
+            pool.query(insertData,[file,req.params.id], (err,res)=>{
+                if (err) {
+                    throw err
+                    console.log("file uploaded")
+                }
+            })
         }
         //menyimpan lokasi upload data contact pada index yang diinginkan
         // contacts[req.query.index].photo=req.file.path;
         res.send(file);
+        res.send(console.log("file uploaded"));
     }
 )
-app.post('/file_upload', upload.single('example'), (req, res, next) => {
-    // req.file is the `example` file or whatever you have on the `name` attribute: <input type="file" name="example" />
-    // I believe it is a `Buffer` object.
-    const encoded = req.file.buffer.toString('base64')
-    console.log(encoded)
-  })
 
 app.set("view engine", "ejs");
 
